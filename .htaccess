@@ -1,0 +1,18 @@
+# Minimal .htaccess for explicit ?path= URLs
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # This rule ensures that if the root URL is accessed (e.g., jacobz.xyz/),
+    # it's internally rewritten to index.php.
+    # It does NOT affect URLs with ?path=
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^$ index.php [L]
+
+    # For any other requests, including those with ?path= or ?random=,
+    # the request is processed directly by index.php as before.
+    # No complex URL rewriting or redirects are performed by .htaccess beyond the root.
+
+</IfModule>
