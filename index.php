@@ -533,6 +533,13 @@ if (isset($_GET['random'])) {
                             }
                         }
                     }
+
+                    // --- DEBUGGING CODE START ---
+                    echo "<script>";
+                    echo "console.log('PHP Debug: isRootProjectsDirectory = ', " . json_encode($isRootProjectsDirectory) . ");";
+                    echo "console.log('PHP Debug: Images found for slideshow = ', " . json_encode($phpHomeImagesForSlideshow) . ");";
+                    echo "</script>";
+                    // --- DEBUGGING CODE END ---
                     
                     echo "<script type='text/javascript'>";
                     echo "var phpCurrentPath = " . json_encode($currentPathDecoded) . ";";
@@ -969,6 +976,11 @@ if (isset($_GET['random'])) {
             clearInterval(slideshowInterval);
             slideshowInterval = null;
 
+            // --- DEBUGGING CODE START ---
+            console.log('JS Debug: Starting slideshow...');
+            console.log('JS Debug: Images for slideshow = ', phpHomeImagesForSlideshow);
+            // --- DEBUGGING CODE END ---
+
             document.querySelectorAll('.previewable-file-link[data-type="image"]').forEach(link => {
                 link.classList.add('hide-on-homepage-slideshow');
             });
@@ -994,6 +1006,9 @@ if (isset($_GET['random'])) {
             let lastIndex = -1;
 
             const cycleRandomImage = () => {
+                // --- DEBUGGING CODE START ---
+                console.log('JS Debug: Cycling to next image...');
+                // --- DEBUGGING CODE END ---
                 if (imagesForSlideshow.length === 0) {
                     console.warn("No images found for the slideshow.");
                     return;
