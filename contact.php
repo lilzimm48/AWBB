@@ -82,13 +82,13 @@ $formError = false;
 
         /* Header / Title Styling */
         h1, h2 {
-            font-weight: normal;
+            font-size: 1.4em;
             margin-top: 0;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            font-size: 1.5em;
-            letter-spacing: 1px;
-            color: inherit;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--light-accent);
+            text-transform: lowercase;
+            width:100%;
         }
 
         /* Breadcrumb Navigation - copied from index.php for consistency */
@@ -223,12 +223,34 @@ $formError = false;
             gap: 10px; /* Space between random file and dark mode toggle */
         }
 
+        /* Inline Link Styling */
+        .inline-link {
+            text-transform: lowercase;
+            text-decoration: none; /* Added underline for a standard link appearance */
+            color: var(--light-accent); /* Default to light mode accent color */
+            font-weight: bold;
+            transition: color 0.1s ease;
+        }
+
+        html.dark-mode .inline-link {
+            color: var(--dark-accent); /* Change to dark mode accent color in dark mode */
+        }
+
+        /* Hover state for inline link */
+        .inline-link:hover {
+            color: var(--dark-text); /* Changes to regular text color on hover */
+            background-color: var(--light-accent);
+        }
+
+        html.dark-mode .inline-link:hover {
+            color: var(--light-text); /* Changes to regular text color on hover in dark mode */
+            background-color: var(--dark-accent);
+        }
+
 
         /* Contact Form Specific Styles */
         .contact-container {
             flex-grow: 1; /* Allow it to take up remaining vertical space */
-            padding: 40px 20px;
-            margin: 20px 0;
             background-color: var(--light-bg);
             color: var(--light-text);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -244,10 +266,10 @@ $formError = false;
         }
 
         .contact-container h1 {
-            text-align: center;
-            font-size: 2.2em;
-            margin-bottom: 30px;
             color: var(--light-accent);
+            max-width:1200px;
+            margin:0 auto;
+            padding: 20px 20px 10px 20px;
         }
         html.dark-mode .contact-container h1 {
             color: var(--dark-accent);
@@ -339,12 +361,20 @@ $formError = false;
             border-color: #0a2;
         }
 
+        p {
+            border-bottom: 1px solid var(--light-gray-text);
+        }
+
+        html.dark-mode p {
+            border-bottom: 0;
+        }
 
         .form-message.error {
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+
         html.dark-mode .form-message.error {
             background-color: #c00; /* Darker red */
             color: #fff;
@@ -436,6 +466,11 @@ $formError = false;
         })();
     </script>
 </head>
+
+
+
+
+
 <body>
     <header>
         <div class="breadcrumb">
@@ -454,7 +489,8 @@ $formError = false;
     </header>
 
     <div class="contact-container">
-        <h1 style="font-weight:700;">get in touch</h1>
+        <h1>get in touch</h1>
+        <p style="text-transform:lowercase;max-width:1200px;text-justify:center;margin:0 auto;line-height: 1.6;padding: 0 20px 20px 20px;">Not every project fits in a box — that&apos;s why I created <a class="inline-link" href="jacobz.xyz">jacobz.xyz</a>. I&apos;m a freelance media consultant based in Williamsport, Pennsylvania offering expert help with graphic design, web design, photography, tech support, and digital content creation. With a bachelor&apos;s in graphic design, a marketing minor, and 10+ years of experience in IT and creative work, I handle logos, websites, audio editing, video production, copywriting, data entry, and more. Whether you're a small business or just need personal tech help, I work hard, respond fast, and make your ideas real.</p>
         <?php
         // The PHP messages for form submission are no longer relevant here
         // because Fillout handles its own submission feedback directly within the embedded form.
@@ -465,7 +501,7 @@ $formError = false;
             </div>
         <?php endif; ?>
 
-        <div style="width:100%;height:500px;" data-fillout-id="m7GMw7PLUyus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+        <div style="width:100%;height:500px;max-width:1200px;margin:0 auto;" data-fillout-id="m7GMw7PLUyus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
         <script src="https://server.fillout.com/embed/v1/"></script>
         </div>
 

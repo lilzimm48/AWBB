@@ -1,0 +1,7 @@
+tunnel: 273209ef-6580-403a-bf88-2c7df763b250
+credentials-file: C:\Users\Jacob\.cloudflared\273209ef-6580-403a-bf88-2c7df763b250.json
+
+ingress:
+  - hostname: jacobz.xyz
+    service: http://localhost:80
+  - service: http_status:404
